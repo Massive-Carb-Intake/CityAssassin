@@ -19,7 +19,7 @@ namespace Map_Generation
         
         // Chunk prefabs
         [SerializeField] private List<GameObject> chunks;
-
+        
         private PlayerMovement _playerMovement;
         
         // Sets the despawn location
@@ -32,11 +32,11 @@ namespace Map_Generation
         // Start is called before the first frame update
         void Start()
         {
+            // Used https://www.youtube.com/watch?v=Y7pp2gzCzUI to figure out how to reference other components
             _playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
             UpdateSpawnInterval();
-            
-            // Self-initialization but it has to happen after a chunk is generated
             GenerateChunk();
+            // Self-initialization but it has to happen after a chunk is generated
             _timePassed = 0;
         }
 
