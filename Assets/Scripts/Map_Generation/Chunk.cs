@@ -7,7 +7,7 @@ namespace Map_Generation
 {
     public class Chunk : MonoBehaviour
     {
-        // Stores a reference to the ChunkHandler located on Chunk_Spawner in the world
+        // Stores a reference to the ChunkHandler located on Chunk_Handler in the world
         private ChunkHandler _chunkHandler;
 
         private void Start()

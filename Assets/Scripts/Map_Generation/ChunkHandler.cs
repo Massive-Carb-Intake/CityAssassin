@@ -20,7 +20,7 @@ namespace Map_Generation
         // Chunk prefabs
         [SerializeField] private List<GameObject> chunks;
 
-        private CharacterMovement _characterMovement;
+        private PlayerMovement _playerMovement;
         
         // Sets the despawn location
         // All self-initializations (stuff that doesn't rely on other components) should happen in Awake()
@@ -32,7 +32,7 @@ namespace Map_Generation
         // Start is called before the first frame update
         void Start()
         {
-            _characterMovement = GameObject.Find("Player").GetComponent<CharacterMovement>();
+            _playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
             UpdateSpawnInterval();
             
             // Self-initialization but it has to happen after a chunk is generated
@@ -42,7 +42,7 @@ namespace Map_Generation
 
         private void UpdateSpawnInterval()
         {
-            spawnInterval = chunkLength / _characterMovement.worldSpeed;
+            spawnInterval = chunkLength / _playerMovement.worldSpeed;
         }
 
         // Update is called once per frame

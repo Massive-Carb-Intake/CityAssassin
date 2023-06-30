@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class CharacterMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] public float worldSpeed = 1f;
     
