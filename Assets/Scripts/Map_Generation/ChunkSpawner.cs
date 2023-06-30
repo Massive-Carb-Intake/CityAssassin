@@ -12,16 +12,18 @@ namespace Map_Generation
         // Chunk parameters
         [SerializeField] private float chunkLength = 10f;
         [SerializeField] private float speed = 1f; // TODO change to global speed variable
-        private float _spawnSeconds;
+        private float _spawnInterval;
         private float _timePassed;
         
+        // Chunk prefabs
         [SerializeField] private List<GameObject> chunks;
         [SerializeField] private GameObject chunkDespawner;
 
         // Start is called before the first frame update
+        // Sets all the variables 
         void Start()
         {
-            _spawnSeconds = chunkLength / speed;
+            _spawnInterval = chunkLength / speed;
             SpawnChunkDespawner();
             GenerateChunk();
             _timePassed = 0;
@@ -30,8 +32,9 @@ namespace Map_Generation
         // Update is called once per frame
         void Update()
         {
+            // Spawns a chunk as soon as time passed is equal to the interval
             // Used https://discussions.unity.com/t/simple-timer/56201/2 to figure out a timer system
-            if (_timePassed >= _spawnSeconds)
+            if (_timePassed >= _spawnInterval)
             {
                 GenerateChunk();
                 _timePassed = 0;
