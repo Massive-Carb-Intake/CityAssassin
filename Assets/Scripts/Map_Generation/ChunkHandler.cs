@@ -1,13 +1,15 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Map_Generation
 {
-    public class ChunkSpawner : MonoBehaviour
+    public class ChunkHandler : MonoBehaviour
     {
         // Spawn locations
         [SerializeField] private Vector3 chunkSpawnLocation = new Vector3(30, 0, 0);
-        [SerializeField] private Vector3 chunkDespawnerSpawnLocation = new Vector3(-30, 0, 0);
+        public Vector3 chunkDespawnLocation;
         
         // Chunk parameters
         [SerializeField] private float chunkLength = 10f;
@@ -17,14 +19,20 @@ namespace Map_Generation
         
         // Chunk prefabs
         [SerializeField] private List<GameObject> chunks;
-        [SerializeField] private GameObject chunkDespawner;
+        
+        // Sets the despawn location
+        // All self-initializations (stuff that doesn't rely on other components) should happen in Awake()
+        private void Awake()
+        {
+            chunkDespawnLocation = new Vector3(-chunkSpawnLocation.x, chunkSpawnLocation.y, chunkSpawnLocation.z);
+        }
 
         // Start is called before the first frame update
-        // Sets all the variables 
         void Start()
         {
             _spawnInterval = chunkLength / speed;
-            SpawnChunkDespawner();
+            
+            // Self-initialization but it has to happen after a chunk is generated
             GenerateChunk();
             _timePassed = 0;
         }
@@ -40,11 +48,6 @@ namespace Map_Generation
                 _timePassed = 0;
             }
             _timePassed += Time.deltaTime;
-        }
-
-        private void SpawnChunkDespawner()
-        {
-            Instantiate(chunkDespawner, chunkDespawnerSpawnLocation, Quaternion.identity);
         }
 
         private void GenerateChunk()
