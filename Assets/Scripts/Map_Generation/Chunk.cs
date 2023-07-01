@@ -1,14 +1,14 @@
 using System;
+using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Map_Generation
 {
     public class Chunk : MonoBehaviour
     {
-        [SerializeField] private float speed = 1f; // TODO change to global speed variable
-        
-        // Stores a reference to the ChunkHandler located on Chunk Spawner in the world
-        private ChunkHandler _chunkHandler; 
+        // Stores a reference to the ChunkHandler located on Chunk_Handler in the world
+        private ChunkHandler _chunkHandler;
 
         private void Start()
         {
@@ -24,7 +24,7 @@ namespace Map_Generation
 
         private void HandleDestruction()
         {
-            if (transform.position.x <= _chunkHandler.chunkDespawnLocation.x)
+            if (transform.position.x <= _chunkHandler.GetChunkDespawnLocation().x)
             {
                 Destroy(gameObject);
             }
@@ -32,8 +32,8 @@ namespace Map_Generation
 
         private void Move()
         {
-            // Moves the chunk without using the physics engine by one meter times the speed
-            transform.position += (new Vector3(-1, 0, 0) * (speed * Time.deltaTime));
+            // Moves the chunk without using the physics engine by one meter times the worldSpeed the chunks are being generated at rather than the current worldSpeed.
+            transform.position += (new Vector3(-1, 0, 0) * ( _chunkHandler.GetChunkLength() / _chunkHandler.GetSpawnInterval() * Time.deltaTime));
         }
     }
 }

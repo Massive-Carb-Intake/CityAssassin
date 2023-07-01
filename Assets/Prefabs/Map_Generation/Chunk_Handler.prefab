@@ -119,10 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkSpawnLocation: {x: 30, y: 0, z: 0}
-  despawnerSpawnLocation: {x: -30, y: 0, z: 0}
+  chunkDespawnLocation: {x: 0, y: 0, z: 0}
   chunkLength: 10
-  speed: 1
+  spawnInterval: 0
   chunks:
-  - {fileID: 1549629066484128699, guid: 08e43e42f591e054aacdb59e79be2673, type: 3}
-  chunkDespawner: {fileID: 430360140956078244, guid: 379dde1203036214da477fc9940f733f,
-    type: 3}
+  - {fileID: 770495432412402246, guid: 08e43e42f591e054aacdb59e79be2673, type: 3}
