@@ -34,7 +34,6 @@ namespace Map_Generation
         {
             // Used https://www.youtube.com/watch?v=Y7pp2gzCzUI to figure out how to reference other components
             _playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-            UpdateSpawnInterval();
             GenerateChunk();
             // Self-initialization but it has to happen after a chunk is generated
             _timePassed = 0;
@@ -53,8 +52,6 @@ namespace Map_Generation
             if (_timePassed >= spawnInterval)
             {
                 GenerateChunk();
-                // Grabs the new speed only after one interval has passed because otherwise it will generate chunks wrong
-                UpdateSpawnInterval();
                 _timePassed = 0;
             }
             //UpdateSpawnInterval();
@@ -63,6 +60,8 @@ namespace Map_Generation
 
         private void GenerateChunk()
         {
+            // Grabs the new speed only after one interval has passed because otherwise it will generate chunks wrong
+            UpdateSpawnInterval();
             Instantiate(chunks[Random.Range(0, chunks.Count)], chunkSpawnLocation, Quaternion.identity);
         }
     }
