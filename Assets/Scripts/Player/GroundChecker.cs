@@ -4,18 +4,23 @@ namespace Player
 {
     public class GroundChecker : MonoBehaviour
     {
-        public bool isTouchingGround = false;
-        
+        private bool _isTouchingGround = false;
+
+        public bool GetIsTouchingGround()
+        {
+            return _isTouchingGround;
+        }
+
         // Without a rigidbody attached to Ground_Checker these functions will not work
         private void OnCollisionEnter(Collision other)
         {
-            isTouchingGround = true;
-            Debug.Log(isTouchingGround);
+            _isTouchingGround = true;
+            Debug.Log(_isTouchingGround);
         }
 
         private void OnCollisionExit(Collision other)
         {
-            isTouchingGround = false;
+            _isTouchingGround = false;
         }
     }
 }

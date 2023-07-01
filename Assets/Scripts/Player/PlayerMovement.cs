@@ -5,7 +5,12 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] public float worldSpeed = 1f;
+        [SerializeField] private float worldSpeed = 1f;
+        public float GetWorldSpeed()
+        {
+            return worldSpeed;
+        }
+        
         [SerializeField] private float playerSpeed = 10f;
         [SerializeField] private float jumpMultiplier = 1f;
         [SerializeField] private float gravityScale = 1f;
@@ -65,7 +70,7 @@ namespace Player
 
         private bool CanJump()
         {
-            return _groundChecker.isTouchingGround;
+            return _groundChecker.GetIsTouchingGround();
         }
 
         private void ClampPosition()

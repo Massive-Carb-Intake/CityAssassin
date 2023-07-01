@@ -10,12 +10,24 @@ namespace Map_Generation
     {
         // Spawn locations
         [SerializeField] private Vector3 chunkSpawnLocation = new Vector3(30, 0, 0);
-        public Vector3 chunkDespawnLocation;
+        private Vector3 _chunkDespawnLocation;
+        public Vector3 GetChunkDespawnLocation()
+        {
+            return _chunkDespawnLocation;
+        }
         
         // Chunk parameters
-        [SerializeField] public float chunkLength = 10f;
+        [SerializeField] private float chunkLength = 10f;
+        public float GetChunkLength()
+        {
+            return chunkLength;
+        }
         private float _timePassed;
-        public float spawnInterval;
+        private float _spawnInterval;
+        public float GetSpawnInterval()
+        {
+            return _spawnInterval;
+        }
         
         // Chunk prefabs
         [SerializeField] private List<GameObject> chunks;
@@ -26,7 +38,7 @@ namespace Map_Generation
         // All self-initializations (stuff that doesn't rely on other components) should happen in Awake()
         private void Awake()
         {
-            chunkDespawnLocation = new Vector3(-chunkSpawnLocation.x, chunkSpawnLocation.y, chunkSpawnLocation.z);
+            _chunkDespawnLocation = new Vector3(-chunkSpawnLocation.x, chunkSpawnLocation.y, chunkSpawnLocation.z);
         }
 
         // Start is called before the first frame update
@@ -41,7 +53,7 @@ namespace Map_Generation
 
         private void UpdateSpawnInterval()
         {
-            spawnInterval = chunkLength / _playerMovement.worldSpeed;
+            _spawnInterval = chunkLength / _playerMovement.GetWorldSpeed();
         }
 
         // Update is called once per frame
@@ -49,7 +61,7 @@ namespace Map_Generation
         {
             // Spawns a chunk as soon as time passed is equal to the interval
             // Used https://discussions.unity.com/t/simple-timer/56201/2 to figure out a timer system
-            if (_timePassed >= spawnInterval)
+            if (_timePassed >= _spawnInterval)
             {
                 GenerateChunk();
                 _timePassed = 0;

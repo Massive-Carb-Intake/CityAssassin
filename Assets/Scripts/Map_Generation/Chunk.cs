@@ -24,7 +24,7 @@ namespace Map_Generation
 
         private void HandleDestruction()
         {
-            if (transform.position.x <= _chunkHandler.chunkDespawnLocation.x)
+            if (transform.position.x <= _chunkHandler.GetChunkDespawnLocation().x)
             {
                 Destroy(gameObject);
             }
@@ -33,7 +33,7 @@ namespace Map_Generation
         private void Move()
         {
             // Moves the chunk without using the physics engine by one meter times the worldSpeed the chunks are being generated at rather than the current worldSpeed.
-            transform.position += (new Vector3(-1, 0, 0) * ( _chunkHandler.chunkLength / _chunkHandler.spawnInterval * Time.deltaTime));
+            transform.position += (new Vector3(-1, 0, 0) * ( _chunkHandler.GetChunkLength() / _chunkHandler.GetSpawnInterval() * Time.deltaTime));
         }
     }
 }
