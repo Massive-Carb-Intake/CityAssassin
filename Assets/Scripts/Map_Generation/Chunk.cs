@@ -18,6 +18,9 @@ namespace Map_Generation
         those speeds so i won't deal with the headache of attaching rigidbodies and dealing with them
         sliding after colliding into one another.
         
+        Also if we're using rigidbodies we have to deal with friction:
+        https://forum.unity.com/threads/what-is-the-default-friction-values-of-the-none-physics-2d-materiel.382109/
+        
         This serves as a way into figuring it out later.
         private void Awake()
         {
