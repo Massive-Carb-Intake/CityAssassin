@@ -119,7 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93c060c1a2129d40bb4a3650adfb76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTouchingGround: 0
 --- !u!54 &6516608546986259366
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -296,8 +295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6874265b248f04fbce3b8392f86530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldSpeed: 1
+  worldSpeed: 5
   playerSpeed: 10
-  jumpMultiplier: 10
+  jumpMultiplier: 22
   gravityScale: 5
-  stoppingPoint: 10
+  stoppingPoint: 0

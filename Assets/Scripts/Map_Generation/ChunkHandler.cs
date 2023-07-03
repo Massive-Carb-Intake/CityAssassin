@@ -10,10 +10,10 @@ namespace Map_Generation
     {
         // Spawn locations
         [SerializeField] private Vector3 chunkSpawnLocation = new Vector3(30, 0, 0);
-        private Vector3 _chunkDespawnLocation;
+        [SerializeField] private Vector3 chunkDespawnLocation = new Vector3(30, 0, 0);
         public Vector3 GetChunkDespawnLocation()
         {
-            return _chunkDespawnLocation;
+            return chunkDespawnLocation;
         }
         
         // Chunk parameters
@@ -32,20 +32,13 @@ namespace Map_Generation
         // Chunk prefabs
         [SerializeField] private List<GameObject> chunks;
         
-        private PlayerMovement _playerMovement;
-        
-        // Sets the despawn location
-        // All self-initializations (stuff that doesn't rely on other components) should happen in Awake()
-        private void Awake()
-        {
-            _chunkDespawnLocation = new Vector3(-chunkSpawnLocation.x, chunkSpawnLocation.y, chunkSpawnLocation.z);
-        }
+        private PlayerController _playerController;
 
         // Start is called before the first frame update
         void Start()
         {
             // Used https://www.youtube.com/watch?v=Y7pp2gzCzUI to figure out how to reference other components
-            _playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+            _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
             GenerateChunk();
             // Self-initialization but it has to happen after a chunk is generated
             _timePassed = 0;
@@ -53,7 +46,7 @@ namespace Map_Generation
 
         private void UpdateSpawnInterval()
         {
-            _spawnInterval = chunkLength / _playerMovement.GetWorldSpeed();
+            _spawnInterval = chunkLength / _playerController.GetWorldSpeed();
         }
 
         // Update is called once per frame
@@ -66,7 +59,6 @@ namespace Map_Generation
                 GenerateChunk();
                 _timePassed = 0;
             }
-            //UpdateSpawnInterval();
             _timePassed += Time.deltaTime;
         }
 

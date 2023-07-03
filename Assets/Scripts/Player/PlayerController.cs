@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float worldSpeed = 1f;
         public float GetWorldSpeed()
@@ -12,13 +12,14 @@ namespace Player
         }
         
         [SerializeField] private float playerSpeed = 10f;
-        [SerializeField] private float jumpMultiplier = 1f;
-        [SerializeField] private float gravityScale = 1f;
+        [SerializeField] private float jumpMultiplier = 22f;
+        [SerializeField] private float gravityScale = 5f;
         [SerializeField] private float stoppingPoint = 10f;
 
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
 
+        // All self-initializations (stuff that doesn't rely on other components) should happen in Awake()
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
