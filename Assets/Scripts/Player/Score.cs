@@ -16,12 +16,6 @@ namespace Player
             return (int)_score;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            AddScore(Time.deltaTime);
-        }
-
         // Will allow for other classes to change score through OOP goodness
         public void AddScore(float scoreToAdd)
         {
