@@ -22,6 +22,7 @@ namespace Player
         // All self-initializations (stuff that doesn't rely on other components) should happen in Awake()
         private void Awake()
         {
+            // One of the only reasons rigidbody works here is because all objects in the scene have a frictionless physics material
             _rigidbody = GetComponent<Rigidbody>();
         }
 
