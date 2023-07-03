@@ -78,8 +78,13 @@ namespace Player
         {
             if (_rigidbody.position.x >= stoppingPoint)
             {
-                _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, _rigidbody.velocity.z);
-                _rigidbody.position = new Vector3(stoppingPoint, _rigidbody.position.y, _rigidbody.position.z);
+                Vector3 velocity = _rigidbody.velocity;
+                velocity = new Vector3(0, velocity.y, velocity.z);
+                _rigidbody.velocity = velocity;
+                
+                Vector3 position = _rigidbody.position;
+                position = new Vector3(stoppingPoint, position.y, position.z);
+                _rigidbody.position = position;
             }
         }
     }
