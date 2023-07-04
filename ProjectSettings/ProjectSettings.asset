@@ -135,8 +135,11 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   bundleVersion: 1.0.2
   preloadedAssets:
+<<<<<<< Updated upstream
   - {fileID: 0}
   - {fileID: 4870212694739620439, guid: 49123b748d4f3424d815b22d19534684, type: 2}
+=======
+>>>>>>> Stashed changes
   - {fileID: 11400000, guid: f22eb3d8a247cc9419e7d7c50f6cfb0f, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0

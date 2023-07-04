@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: a9c741a46b19bf04ebd227e36e9dbab5
+=======
+guid: 69fac71e86c575846b3f147a0161ced9
+>>>>>>> Stashed changes
 labels:
 - gpsr
 PluginImporter:
