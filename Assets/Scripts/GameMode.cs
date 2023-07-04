@@ -83,11 +83,10 @@ public class GameMode : MonoBehaviour
     {
         UnpauseGame();
         
-        // For right now, I'm just making the player spawn super high up when they are resurrected
-        Vector3 position = _rigidbody.position;
-        position = new Vector3(position.x, resurrectionSpawnPointY, position.z);
-        _rigidbody.position = position;
-        
+        // For right now, I'm just making the player spawn super high up in the middle of the screen when they are resurrected
+        _rigidbody.position = new Vector3(0, resurrectionSpawnPointY, 0);;
+        _rigidbody.velocity = Vector3.zero;
+
         _health.SetCurrentHealth(_health.GetMaxHealth());
         _health.SetIsDead(false);
         // Should probably make them be invulnerable to the next few seconds or float or something but
