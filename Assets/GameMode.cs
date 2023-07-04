@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,16 +5,27 @@ using UnityEngine.SceneManagement;
 public class GameMode : MonoBehaviour
 {
     /*
-     * Out of bounds causes kill
-     * Update scoreboard
-     * Game end (scoreboard update)
-     * Resurrection
+     * This component basically controls the game loop. mainly concerns:
+     * Death
+     * Score
+     * So worldly events that aren't tied to the player which is basically the entire game so yeah
+     * In my head it's kind of like defining a difficulty for the level.
      */
 
     [SerializeField] private float outOfBoundsX = 13;
     [SerializeField] private float outOfBoundsY = 6;
-
+    
+    [SerializeField] private float worldSpeed = 5f;
+    public float GetWorldSpeed()
+    {
+        return worldSpeed;
+    }
+    
+    // Potential to tie this to worldSpeed
     [SerializeField] private float scoreMultiplier = 1;
+    private bool _scoreSaved;
+
+    [SerializeField] private float resurrectionSpawnPointY = 3;
 
     public float GetScoreMultiplier()
     {
@@ -34,6 +42,8 @@ public class GameMode : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _health = GetComponent<Health>();
         _score = GetComponent<Score>();
+        
+        UnpauseGame(); // To work after a reload
     }
 
     // Update is called once per frame
@@ -46,12 +56,54 @@ public class GameMode : MonoBehaviour
 
     private void HandleDeath()
     {
-        if (_health.GetIsDead())
+        if (!_health.GetIsDead()) return;
+        PauseGame();
+        LetUserDecideOnDeath();
+    }
+
+    private void LetUserDecideOnDeath()
+    {
+        /*
+         * Here's where instead of keyboard input we would use the UI
+         * But for now it will just wait until keyboard input
+         */
+
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            PauseGame();
-            _score.UpdateHighScore();
-            ReloadGame();
+            EndGame();
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Resurrect();
+        }
+    }
+
+    private void Resurrect()
+    {
+        UnpauseGame();
+        
+        // For right now, I'm just making the player spawn super high up when they are resurrected
+        Vector3 position = _rigidbody.position;
+        position = new Vector3(position.x, resurrectionSpawnPointY, position.z);
+        _rigidbody.position = position;
+        
+        _health.SetCurrentHealth(_health.GetMaxHealth());
+        _health.SetIsDead(false);
+        // Should probably make them be invulnerable to the next few seconds or float or something but
+        // no clue what to do until we actually have a working game.
+
+    }
+
+    private void EndGame()
+    {
+        if (!_scoreSaved)
+        {
+            _score.UpdateHighScore();
+            _scoreSaved = true;
+        }
+
+        ReloadGame();
     }
 
     private void IncreaseScoreContinuously()
@@ -64,7 +116,7 @@ public class GameMode : MonoBehaviour
         if (_rigidbody.position.x <= -outOfBoundsX || _rigidbody.position.x >= outOfBoundsX ||
             _rigidbody.position.y <= -outOfBoundsY || _rigidbody.position.y >= outOfBoundsY)
         {
-            _health.ApplyDamage(_health.GetHealth());
+            _health.ApplyDamage(_health.GetCurrentHealth());
         }
     }
 

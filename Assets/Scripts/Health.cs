@@ -1,16 +1,23 @@
+using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float health = 100;
+    [SerializeField] private float maxHealth = 100;
+    private float _currentHealth;
 
-    public float GetHealth()
+    public float GetMaxHealth()
     {
-        return health;
+        return maxHealth;
     }
-    public void SetHealth(float health)
+    
+    public float GetCurrentHealth()
     {
-        this.health = health;
+        return _currentHealth;
+    }
+    public void SetCurrentHealth(float health)
+    {
+        this._currentHealth = health;
     }
     
     private bool _isDead;
@@ -26,15 +33,20 @@ public class Health : MonoBehaviour
 
     public void ApplyDamage(float damageToApply)
     {
-        health -= damageToApply;
-        if (health <= 0)
+        _currentHealth -= damageToApply;
+        if (_currentHealth <= 0)
         {
             SetIsDead(true);
-            SetHealth(0);
+            SetCurrentHealth(0);
         }
         else
         {
             SetIsDead(false);
         }
+    }
+
+    private void Start()
+    {
+        _currentHealth = maxHealth;
     }
 }

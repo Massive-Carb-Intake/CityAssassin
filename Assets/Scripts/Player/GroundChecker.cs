@@ -15,7 +15,6 @@ namespace Player
         private void OnCollisionEnter()
         {
             _isTouchingGround = true;
-            Debug.Log(_isTouchingGround);
         }
 
         private void OnCollisionExit()

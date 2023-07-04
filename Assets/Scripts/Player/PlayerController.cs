@@ -4,12 +4,6 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private float worldSpeed = 1f;
-        public float GetWorldSpeed()
-        {
-            return worldSpeed;
-        }
-        
         [SerializeField] private float playerSpeed = 10f;
         [SerializeField] private float jumpMultiplier = 22f;
         [SerializeField] private float gravityScale = 5f;
