@@ -298,7 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6874265b248f04fbce3b8392f86530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldSpeed: 5
   playerSpeed: 10
   jumpMultiplier: 22
   gravityScale: 5
@@ -315,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0960a35bf0dcb84a8399fbad99667aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
 --- !u!114 &-6245751966603319749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,4 +342,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outOfBoundsX: 13
   outOfBoundsY: 6
+  worldSpeed: 5
   scoreMultiplier: 1
+  resurrectionSpawnPointY: 3
