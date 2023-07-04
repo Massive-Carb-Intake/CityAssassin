@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Map_Generation
@@ -32,13 +31,13 @@ namespace Map_Generation
         // Chunk prefabs
         [SerializeField] private List<GameObject> chunks;
         
-        private PlayerController _playerController;
+        private GameMode _gameMode;
 
         // Start is called before the first frame update
         void Start()
         {
             // Used https://www.youtube.com/watch?v=Y7pp2gzCzUI to figure out how to reference other components
-            _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+            _gameMode = GameObject.Find("Player").GetComponent<GameMode>();
             GenerateChunk();
             // Self-initialization but it has to happen after a chunk is generated
             _timePassed = 0;
@@ -46,7 +45,7 @@ namespace Map_Generation
 
         private void UpdateSpawnInterval()
         {
-            _spawnInterval = chunkLength / _playerController.GetWorldSpeed();
+            _spawnInterval = chunkLength / _gameMode.GetWorldSpeed();
         }
 
         // Update is called once per frame
