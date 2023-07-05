@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Monetization.unity
+    path: Assets/Scenes/Advertisements.unity
     guid: 991f1a4344509314298857c775ad5e4e
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 49123b748d4f3424d815b22d19534684,
