@@ -11,6 +11,7 @@ public class IronSourceScript : MonoBehaviour
     {
         IronSource.Agent.init("1aad0e0d5", IronSourceAdUnits.INTERSTITIAL);
         IronSource.Agent.init("1aad0e0d5", IronSourceAdUnits.REWARDED_VIDEO);
+        IronSource.Agent.init("1aad0e0d5", IronSourceAdUnits.BANNER);
         IronSource.Agent.validateIntegration();
         Debug.Log("Started");
     }
@@ -18,6 +19,8 @@ public class IronSourceScript : MonoBehaviour
     private void OnEnable()
     {
         IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
+        
+        //Add AdInfo Interstitial Video Events
         IronSourceInterstitialEvents.onAdReadyEvent += InterstitialOnAdReadyEvent;
         IronSourceInterstitialEvents.onAdLoadFailedEvent += InterstitialOnAdLoadFailed;
         IronSourceInterstitialEvents.onAdOpenedEvent += InterstitialOnAdOpenedEvent;
@@ -25,9 +28,28 @@ public class IronSourceScript : MonoBehaviour
         IronSourceInterstitialEvents.onAdShowSucceededEvent += InterstitialOnAdShowSucceededEvent;
         IronSourceInterstitialEvents.onAdShowFailedEvent += InterstitialOnAdShowFailedEvent;
         IronSourceInterstitialEvents.onAdClosedEvent += InterstitialOnAdClosedEvent;
+        
+        //Add AdInfo Rewarded Video Events
+        IronSourceRewardedVideoEvents.onAdOpenedEvent += RewardedVideoOnAdOpenedEvent;
+        IronSourceRewardedVideoEvents.onAdClosedEvent += RewardedVideoOnAdClosedEvent;
+        IronSourceRewardedVideoEvents.onAdAvailableEvent += RewardedVideoOnAdAvailable;
+        IronSourceRewardedVideoEvents.onAdUnavailableEvent += RewardedVideoOnAdUnavailable;
+        IronSourceRewardedVideoEvents.onAdShowFailedEvent += RewardedVideoOnAdShowFailedEvent;
+        IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
+        IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
+        
+        //Add AdInfo Banner Events
+        IronSourceBannerEvents.onAdLoadedEvent += BannerOnAdLoadedEvent;
+        IronSourceBannerEvents.onAdLoadFailedEvent += BannerOnAdLoadFailedEvent;
+        IronSourceBannerEvents.onAdClickedEvent += BannerOnAdClickedEvent;
+        IronSourceBannerEvents.onAdScreenPresentedEvent += BannerOnAdScreenPresentedEvent;
+        IronSourceBannerEvents.onAdScreenDismissedEvent += BannerOnAdScreenDismissedEvent;
+        IronSourceBannerEvents.onAdLeftApplicationEvent += BannerOnAdLeftApplicationEvent;
+        
         Debug.Log("Enabled");
     }
     
+    private void SdkInitializationCompletedEvent(){}
 
     void OnApplicationPause(bool isPaused)
     {
@@ -53,10 +75,31 @@ public class IronSourceScript : MonoBehaviour
         }
     }
     
+    // Rewarded Button
+    public void ShowRewardedAd()
+    {
+        Debug.Log("Rewarded Function Triggered");
+        if (IronSource.Agent.isRewardedVideoAvailable()){
+            Debug.Log("Rewarded Available");
+            IronSource.Agent.showRewardedVideo();
+        }
+    }
     
-    private void SdkInitializationCompletedEvent(){}
+    // Banner Buttons
+    public void LoadBanner()
+    {
+        IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+    }
+
+    public void DestroyBanner()
+    {
+        IronSource.Agent.destroyBanner();
+    }
     
-    // Interstitial Callbacks
+    
+    
+    
+    // INTERSTITIAL CALLBACKS
     /************* Interstitial AdInfo Delegates *************/
     
     
@@ -100,9 +143,67 @@ public class IronSourceScript : MonoBehaviour
     void InterstitialOnAdShowSucceededEvent(IronSourceAdInfo adInfo) {
     }
 
-
-    // Rewarded Callbacks
     
+    
+
+    // REWARDED CALLBACKS
+    /************* RewardedVideo AdInfo Delegates *************/
+    // Indicates that there’s an available ad.
+    // The adInfo object includes information about the ad that was loaded successfully
+    // This replaces the RewardedVideoAvailabilityChangedEvent(true) event
+    void RewardedVideoOnAdAvailable(IronSourceAdInfo adInfo) {
+    }
+    // Indicates that no ads are available to be displayed
+    // This replaces the RewardedVideoAvailabilityChangedEvent(false) event
+    void RewardedVideoOnAdUnavailable() {
+    }
+    // The Rewarded Video ad view has opened. Your activity will loose focus.
+    void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo){
+    }
+    // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
+    void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo){
+    }
+    // The user completed to watch the video, and should be rewarded.
+    // The placement parameter will include the reward data.
+    // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
+    void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo){
+    }
+    // The rewarded video ad was failed to show.
+    void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo){
+    }
+    // Invoked when the video ad was clicked.
+    // This callback is not supported by all networks, and we recommend using it only if
+    // it’s supported by all networks you included in your build.
+    void RewardedVideoOnAdClickedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo){
+    }
+    
+    
+    // BANNER CALLBACKS
+    /************* Banner AdInfo Delegates *************/
+    //Invoked once the banner has loaded
+    void BannerOnAdLoadedEvent(IronSourceAdInfo adInfo) 
+    {
+    }
+    //Invoked when the banner loading process has failed.
+    void BannerOnAdLoadFailedEvent(IronSourceError ironSourceError) 
+    {
+    }
+    // Invoked when end user clicks on the banner ad
+    void BannerOnAdClickedEvent(IronSourceAdInfo adInfo) 
+    {
+    }
+    //Notifies the presentation of a full screen content following user click
+    void BannerOnAdScreenPresentedEvent(IronSourceAdInfo adInfo) 
+    {
+    }
+    //Notifies the presented screen has been dismissed
+    void BannerOnAdScreenDismissedEvent(IronSourceAdInfo adInfo) 
+    {
+    }
+    //Invoked when the user leaves the app
+    void BannerOnAdLeftApplicationEvent(IronSourceAdInfo adInfo) 
+    {
+    }
     
     
 }
