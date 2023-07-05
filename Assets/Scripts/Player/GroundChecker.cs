@@ -4,7 +4,7 @@ namespace Player
 {
     public class GroundChecker : MonoBehaviour
     {
-        private bool _isTouchingGround;
+        private bool _isTouchingGround = false;
 
         public bool GetIsTouchingGround()
         {

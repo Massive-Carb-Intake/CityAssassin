@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6874265b248f04fbce3b8392f86530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 10
+  playerSpeed: 1
   jumpMultiplier: 22
   gravityScale: 5
   stoppingPoint: 0
@@ -342,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outOfBoundsX: 13
   outOfBoundsY: 6
-  worldSpeed: 5
+  worldSpeedBase: 5
+  worldSpeedMax: 5
   scoreMultiplier: 1
   resurrectionSpawnPointY: 3

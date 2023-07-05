@@ -4,10 +4,11 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private float playerSpeed = 10f;
+        [SerializeField] private float playerSpeed = 1f;
         [SerializeField] private float jumpMultiplier = 22f;
         [SerializeField] private float gravityScale = 5f;
         [SerializeField] private float stoppingPoint = 10f;
+        [SerializeField] private float returnToStoppingPointTime = 1;
 
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
@@ -39,10 +40,8 @@ namespace Player
 
         private void MoveRight()
         {
-            if (!(_rigidbody.position.x > stoppingPoint))
-            {
-                _rigidbody.AddForce(Vector3.right * (playerSpeed * Time.deltaTime));
-            }
+            // The entire thing has to be in clamping because clamping has become the
+            // single-biggest flaw in player movement
             ClampPosition();
         }
 
@@ -51,10 +50,15 @@ namespace Player
             // Used https://gamedevbeginner.com/how-to-jump-in-unity-with-or-without-physics/ for jumping mechanic
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (CanJump())
-                {
-                    _rigidbody.AddForce(Vector3.up * jumpMultiplier, ForceMode.Impulse);
-                }
+                Jump();
+            }
+        }
+
+        private void Jump()
+        {
+            if (CanJump())
+            {
+                _rigidbody.AddForce(Vector3.up * jumpMultiplier, ForceMode.Impulse);
             }
         }
 
@@ -63,17 +67,24 @@ namespace Player
             return _groundChecker.GetIsTouchingGround();
         }
 
+        /*
+         * This single mechanic took me more time to get right than most of the other stuff combined
+         * And it still doesn't work perfectly
+         * It wobbles now lol
+         */
         private void ClampPosition()
         {
-            if (_rigidbody.position.x >= stoppingPoint)
+            if (_rigidbody.position.x >= stoppingPoint && _groundChecker.GetIsTouchingGround())
             {
                 Vector3 velocity = _rigidbody.velocity;
-                velocity = new Vector3(0, velocity.y, velocity.z);
+                velocity = new Vector3(-((_rigidbody.position.x - stoppingPoint) / returnToStoppingPointTime + playerSpeed), velocity.y, velocity.z);
                 _rigidbody.velocity = velocity;
-                
-                Vector3 position = _rigidbody.position;
-                position = new Vector3(stoppingPoint, position.y, position.z);
-                _rigidbody.position = position;
+            }
+            else
+            {
+                Vector3 velocity = _rigidbody.velocity;
+                velocity = new Vector3(playerSpeed, velocity.y, velocity.z);
+                _rigidbody.velocity = velocity;
             }
         }
     }
