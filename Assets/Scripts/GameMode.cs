@@ -14,36 +14,44 @@ public class GameMode : MonoBehaviour
 
     [SerializeField] private float outOfBoundsX = 13;
     [SerializeField] private float outOfBoundsY = 6;
-    
-    [SerializeField] private float worldSpeed = 5f;
+    /*
+     * Thinking about this rn:
+     * Could tie multiplier to worldSpeed - 4
+     * No clue if it should step up based on time frame or after hitting a certain score
+     */
+    [SerializeField] private float worldSpeedBase = 5f;
+    // [SerializeField] private float worldSpeedMax = 5f;
+    private float _currentWorldSpeed;
     public float GetWorldSpeed()
     {
-        return worldSpeed;
+        return _currentWorldSpeed;
     }
     
-    // Potential to tie this to worldSpeed
+    // Potential to tie this to currentWorldSpeed
     [SerializeField] private float scoreMultiplier = 1;
-    private bool _scoreSaved;
-
-    [SerializeField] private float resurrectionSpawnPointY = 3;
-
+    
     public float GetScoreMultiplier()
     {
         return scoreMultiplier;
     }
+    
+    private bool _scoreSaved;
+
+    [SerializeField] private float resurrectionSpawnPointY = 3;
 
     private Rigidbody _rigidbody;
     private Health _health;
     private Score _score;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _health = GetComponent<Health>();
         _score = GetComponent<Score>();
+
+        _currentWorldSpeed = worldSpeedBase;
         
-        UnpauseGame(); // To work after a reload
+        UnpauseGame(); // To start the level after a reload
     }
 
     // Update is called once per frame

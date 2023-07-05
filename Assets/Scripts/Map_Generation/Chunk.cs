@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Map_Generation
@@ -30,12 +31,12 @@ namespace Map_Generation
             _chunkHandler = GameObject.Find("Chunk_Handler").GetComponent<ChunkHandler>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             Move();
             HandleDestruction();
         }
+        
 
         private void HandleDestruction()
         {
