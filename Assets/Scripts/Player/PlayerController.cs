@@ -54,7 +54,7 @@ namespace Player
             }
         }
 
-        private void Jump()
+        public void Jump()
         {
             if (CanJump())
             {
