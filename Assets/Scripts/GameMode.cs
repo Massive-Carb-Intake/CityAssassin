@@ -140,6 +140,6 @@ public class GameMode : MonoBehaviour
 
     public void ReloadGame()
     {
-        SceneManager.LoadScene(0); // Set the right level in build manager pretty please
+        SceneManager.LoadScene(1); // Set the right level in build manager pretty please
     }
 }
