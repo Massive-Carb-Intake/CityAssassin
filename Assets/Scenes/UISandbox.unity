@@ -394,6 +394,110 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 540264502}
     m_Modifications:
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_text
+      value: 'INTERACT
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 102.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a,
+        type: 2}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_fontSizeMax
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_charWidthMaxAdj
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_characterSpacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_overrideHtmlColors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003841824533692338, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_fontColorGradientPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: d4d6ff137a88e704a8325ebe281b3fb7,
+        type: 2}
     - target: {fileID: 5672270014587015050, guid: 4932ad3e75a658645b827354d7bbcb61,
         type: 3}
       propertyPath: m_Name
@@ -457,6 +561,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812042055003476290, guid: 4932ad3e75a658645b827354d7bbcb61,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812042055003476290, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812042055003476290, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812042055003476290, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -493,12 +612,12 @@ PrefabInstance:
     - target: {fileID: 7812042055003476290, guid: 4932ad3e75a658645b827354d7bbcb61,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7812042055003476290, guid: 4932ad3e75a658645b827354d7bbcb61,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7812042055003476290, guid: 4932ad3e75a658645b827354d7bbcb61,
         type: 3}
@@ -514,6 +633,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812042055003476290, guid: 4932ad3e75a658645b827354d7bbcb61,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
