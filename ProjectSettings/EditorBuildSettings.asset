@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Advertisements.unity
     guid: 991f1a4344509314298857c775ad5e4e
+  - enabled: 1
+    path: Assets/Scenes/Maanav.unity
+    guid: 4c1741b1462ee984ba353b641b298261
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 49123b748d4f3424d815b22d19534684,
       type: 2}
