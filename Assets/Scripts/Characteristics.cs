@@ -21,11 +21,25 @@ public class Characteristics : MonoBehaviour
         outfits.Add("Outfit 1");
         outfits.Add("Outfit 2");
         outfits.Add("Outfit 3");
+
+        string[] npc = GenerateTraits(hats, faces, outfits);
+        Debug.Log(npc[0]);
+        Debug.Log(npc[1]);
+        Debug.Log(npc[2]);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    string[] GenerateTraits(List<string> traits1, List<string> traits2, List<string> traits3)
+    {
+        string[] traits = new string[3];
+        traits[0] = traits1[Random.Range(0, 3)];
+        traits[1] = traits2[Random.Range(0, 3)];
+        traits[2] = traits3[Random.Range(0, 3)];
+        return traits;
     }
 }
