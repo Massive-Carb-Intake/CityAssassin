@@ -4,7 +4,7 @@
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-public class IronSourceScript : MonoBehaviour
+public class IronSourceAds : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
