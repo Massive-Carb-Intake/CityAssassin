@@ -96,7 +96,7 @@ public class IronSourceDemoScript : MonoBehaviour
         IronSourceEvents.onBannerAdLeftApplicationEvent += BannerAdLeftApplicationEvent;
 
         //Add ImpressionSuccess Event
-        IronSourceEvents.onImpressionSuccessEvent += ImpressionSuccessEvent;
+        // IronSourceEvents.onImpressionSuccessEvent += ImpressionSuccessEvent;     METHOD DEPRECATED, IMPRESSIONSUCCESSEVENT IS SAME AS IMPRESSIONDATAREADYEVENT
         IronSourceEvents.onImpressionDataReadyEvent += ImpressionDataReadyEvent;
 
 
