@@ -21,10 +21,8 @@ public class Characteristics : MonoBehaviour
         outfits.Add("Outfit 1");
         outfits.Add("Outfit 2");
         outfits.Add("Outfit 3");
-        
+
         string[] StartingTarget = GenerateTraits(hats, faces, outfits);
-
-
     }
 
     // Update is called once per frame

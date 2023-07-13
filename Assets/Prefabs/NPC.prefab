@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2117254866696833744}
   - component: {fileID: 4970146561895480109}
   - component: {fileID: 146209195391140583}
+  - component: {fileID: 7491491679208428707}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -107,6 +108,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7491491679208428707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393100529805644949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6cfa62008e63724f845ef408d3a3d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hat: 
+  face: 
+  outfit: 
 --- !u!1 &7727266987547622163
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2710346807479352029}
+  - component: {fileID: 4402280672138322974}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -139,3 +156,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4402280672138322974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7727266987547622163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6cfa62008e63724f845ef408d3a3d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hat: 
+  face: 
+  outfit: 
