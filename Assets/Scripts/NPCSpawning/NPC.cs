@@ -45,6 +45,13 @@ public class NPC : MonoBehaviour
         }
     }
 
+    public NPC(string h, string f, string o)
+    {
+        hat=h;
+        face=f;
+        outfit=o;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,12 +82,19 @@ public class NPC : MonoBehaviour
         
     }
 
-    string[] GenerateTraits(List<string> traits1, List<string> traits2, List<string> traits3)
+    public string[] GenerateTraits(List<string> traits1, List<string> traits2, List<string> traits3)
     {
         string[] traits = new string[3];
         traits[0] = traits1[Random.Range(0, 3)];
         traits[1] = traits2[Random.Range(0, 3)];
         traits[2] = traits3[Random.Range(0, 3)];
         return traits;
+    }
+
+    public NPC GenerateTarget(List<string> traits1, List<string> traits2, List<string> traits3)
+    {
+        string[] traits = GenerateTraits(traits1, traits2, traits3);
+        NPC npc = new NPC(traits[0], traits[1], traits[2]);
+        return npc;
     }
 }
