@@ -21,10 +21,10 @@ public class GameMode : MonoBehaviour
      */
     [SerializeField] private float worldSpeedBase = 5f;
     // [SerializeField] private float worldSpeedMax = 5f;
-    private float _currentWorldSpeed;
+    [SerializeField] private float currentWorldSpeed;
     public float GetWorldSpeed()
     {
-        return _currentWorldSpeed;
+        return currentWorldSpeed;
     }
     
     // Potential to tie this to currentWorldSpeed
@@ -49,7 +49,7 @@ public class GameMode : MonoBehaviour
         _health = GetComponent<Health>();
         _score = GetComponent<Score>();
 
-        _currentWorldSpeed = worldSpeedBase;
+        currentWorldSpeed = worldSpeedBase;
         
         UnpauseGame(); // To start the level after a reload
     }
@@ -140,6 +140,6 @@ public class GameMode : MonoBehaviour
 
     public void ReloadGame()
     {
-        SceneManager.LoadScene(1); // Set the right level in build manager pretty please
+        SceneManager.LoadScene(0); // Set the right level in build manager pretty please
     }
 }
