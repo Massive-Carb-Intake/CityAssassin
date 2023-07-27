@@ -56,7 +56,7 @@ namespace Map_Generation
             if (_timePassed >= _spawnInterval)
             {
                 GenerateChunk();
-                _timePassed = 0;
+                _timePassed -= _spawnInterval;
             }
             _timePassed += Time.deltaTime;
         }
