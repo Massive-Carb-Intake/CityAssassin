@@ -329,7 +329,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167011420}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -3364,6 +3364,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 707004458}
     m_Modifications:
+    - target: {fileID: 607088297377784744, guid: 3ede8a7972300674f9ca3880aa290840,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e545aa15fdd788c4786592910fdeeeae,
+        type: 3}
     - target: {fileID: 2625502039648882409, guid: 3ede8a7972300674f9ca3880aa290840,
         type: 3}
       propertyPath: m_Name
@@ -3407,12 +3413,12 @@ PrefabInstance:
     - target: {fileID: 3361193856306604035, guid: 3ede8a7972300674f9ca3880aa290840,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 75
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3361193856306604035, guid: 3ede8a7972300674f9ca3880aa290840,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3361193856306604035, guid: 3ede8a7972300674f9ca3880aa290840,
         type: 3}
