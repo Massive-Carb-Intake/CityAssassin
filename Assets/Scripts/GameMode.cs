@@ -22,7 +22,7 @@ public class GameMode : MonoBehaviour
     [SerializeField] private float worldSpeedBase = 5f;
     // [SerializeField] private float worldSpeedMax = 5f;
     [SerializeField] private float currentWorldSpeed;
-    public float GetWorldSpeed()
+    public float GetCurrentWorldSpeed()
     {
         return currentWorldSpeed;
     }
@@ -42,12 +42,14 @@ public class GameMode : MonoBehaviour
     private Rigidbody _rigidbody;
     private Health _health;
     private Score _score;
+    private Rigidbody _mainCameraRigidbody;
     
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _health = GetComponent<Health>();
         _score = GetComponent<Score>();
+        _mainCameraRigidbody = GameObject.Find("Main_Camera").GetComponent<Rigidbody>();
 
         currentWorldSpeed = worldSpeedBase;
         
@@ -92,8 +94,9 @@ public class GameMode : MonoBehaviour
         UnpauseGame();
         
         // For right now, I'm just making the player spawn super high up in the middle of the screen when they are resurrected
-        _rigidbody.position = new Vector3(0, resurrectionSpawnPointY, 0);;
-        _rigidbody.velocity = Vector3.zero; 
+        Vector3 position = _mainCameraRigidbody.position;
+        _rigidbody.position = new Vector3(position.x, resurrectionSpawnPointY + position.y, 0);
+        _rigidbody.velocity = Vector3.zero;
 
         _health.SetCurrentHealth(_health.GetMaxHealth());
         _health.SetIsDead(false);
@@ -120,8 +123,8 @@ public class GameMode : MonoBehaviour
 
     private void HandleOutOfBounds()
     {
-        if (_rigidbody.position.x <= -outOfBoundsX || _rigidbody.position.x >= outOfBoundsX ||
-            _rigidbody.position.y <= -outOfBoundsY || _rigidbody.position.y >= outOfBoundsY)
+        if (_rigidbody.position.x <= -outOfBoundsX + _mainCameraRigidbody.position.x || _rigidbody.position.x >= outOfBoundsX + _mainCameraRigidbody.position.x ||
+            _rigidbody.position.y <= -outOfBoundsY + _mainCameraRigidbody.position.y || _rigidbody.position.y >= outOfBoundsY + _mainCameraRigidbody.position.y)
         {
             _health.ApplyDamage(_health.GetCurrentHealth());
         }

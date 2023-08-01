@@ -11,14 +11,18 @@ namespace Player
         [SerializeField] private float returnToStoppingPointTime = 1;
 
         private Rigidbody _rigidbody;
+        private GameMode _gameMode;
         private GroundChecker _groundChecker;
+        private Rigidbody _mainCameraRigidbody;
 
         // Start is called before the first frame update
         void Start()
         {
             // One of the only reasons rigidbody works here is because all objects in the scene have a frictionless physics material
             _rigidbody = GetComponent<Rigidbody>();
+            _gameMode = GetComponent<GameMode>();
             _groundChecker = GameObject.Find("Ground_Checker").GetComponent<GroundChecker>();
+            _mainCameraRigidbody = GameObject.Find("Main_Camera").GetComponent<Rigidbody>();
         }
 
         // Update is called once per frame
@@ -30,7 +34,13 @@ namespace Player
         private void FixedUpdate()
         {
             MoveRight();
+            MoveCameraRight();
             ApplyIncreasedGravity();
+        }
+
+        private void MoveCameraRight()
+        {
+            _mainCameraRigidbody.velocity = new Vector3(_gameMode.GetCurrentWorldSpeed(), 0, 0);
         }
 
         private void ApplyIncreasedGravity()
@@ -42,7 +52,16 @@ namespace Player
         {
             // The entire thing has to be in clamping because clamping has become the
             // single-biggest flaw in player movement
-            ClampPosition();
+            if (_rigidbody.position.x >= stoppingPoint + _mainCameraRigidbody.transform.position.x && _groundChecker.GetIsTouchingGround())
+            {
+                ClampPosition();
+            }
+            else
+            {
+                Vector3 velocity = _rigidbody.velocity;
+                velocity = new Vector3(playerSpeed + _gameMode.GetCurrentWorldSpeed(), velocity.y, velocity.z);
+                _rigidbody.velocity = velocity;
+            }
         }
 
         private void HandleJump()
@@ -74,18 +93,9 @@ namespace Player
          */
         private void ClampPosition()
         {
-            if (_rigidbody.position.x >= stoppingPoint && _groundChecker.GetIsTouchingGround())
-            {
-                Vector3 velocity = _rigidbody.velocity;
-                velocity = new Vector3(-((_rigidbody.position.x - stoppingPoint) / returnToStoppingPointTime + playerSpeed), velocity.y, velocity.z);
-                _rigidbody.velocity = velocity;
-            }
-            else
-            {
-                Vector3 velocity = _rigidbody.velocity;
-                velocity = new Vector3(playerSpeed, velocity.y, velocity.z);
-                _rigidbody.velocity = velocity;
-            }
+            Vector3 velocity = _rigidbody.velocity;
+            velocity = new Vector3(-((_rigidbody.position.x - (stoppingPoint + _mainCameraRigidbody.transform.position.x)) / returnToStoppingPointTime + playerSpeed), velocity.y, velocity.z);
+            _rigidbody.velocity = velocity;
         }
     }
 }
