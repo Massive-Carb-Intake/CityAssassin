@@ -46,13 +46,15 @@ public class GameMode : MonoBehaviour
     private Rigidbody _mainCameraRigidbody;
     private GameObject _mainGameCanvas;
     private MainGameplayUIController _UIScript;
-    
+    private GroundChecker _groundChecker;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _health = GetComponent<Health>();
         _score = GetComponent<Score>();
         _mainCameraRigidbody = GameObject.Find("Main_Camera").GetComponent<Rigidbody>();
+        _groundChecker = GameObject.Find("Ground_Checker").GetComponent<GroundChecker>();
         _mainGameCanvas = GameObject.Find("Main_Game_Canvas");
         _UIScript = _mainGameCanvas.GetComponent<MainGameplayUIController>();
         
@@ -136,6 +138,14 @@ public class GameMode : MonoBehaviour
             _health.ApplyDamage(_health.GetCurrentHealth());
         }
     }
+    
+    /*private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject != null && other.gameObject != _groundChecker.GetCollidedWith())
+        {
+            _health.ApplyDamage(_health.GetCurrentHealth());
+        }
+    }*/
 
     // Used https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
     public void PauseGame()
