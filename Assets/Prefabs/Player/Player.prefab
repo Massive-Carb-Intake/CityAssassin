@@ -300,8 +300,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 1
-  jumpHeight: 3
-  gravityValue: -20
+  jumpMultiplier: 22
+  gravityScale: 5
+  stoppingPoint: 10
+  returnToStoppingPointTime: 1
 --- !u!114 &-4624896024310426135
 MonoBehaviour:
   m_ObjectHideFlags: 0
