@@ -1,3 +1,4 @@
+using System;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -739,7 +740,7 @@ namespace Player
         {
             HandleJump();
         }
-        
+
         private void FixedUpdate()
         {
             // MoveRight();
@@ -791,7 +792,7 @@ namespace Player
         
         public void Jump()
         {
-            if (_grounded)
+            if (CanJump())
             {
         
                 _animator.SetBool(_animIDJump, false);
@@ -802,17 +803,9 @@ namespace Player
             }
         }
         
-        private void CanJump()
+        private bool CanJump()
         {
-            // set sphere position, with offset
-            Vector3 position = transform.position;
-            Vector3 spherePosition = new Vector3(position.x, position.y,
-                position.z);
-            _grounded = Physics.CheckSphere(spherePosition, 0.28f, groundLayers,
-                QueryTriggerInteraction.Ignore);
-        
-            // update animator if using character
-            _animator.SetBool(_animIDGrounded, _grounded);
+            return _groundChecker.GetIsTouchingGround();
         }
         
         /*
