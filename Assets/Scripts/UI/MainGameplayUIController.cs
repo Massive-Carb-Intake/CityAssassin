@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -18,6 +19,8 @@ namespace UI
         private GameObject _player;
 
         private GameMode _gameMode;
+        
+        private PlayerController _playerController;
 
         
         
@@ -31,6 +34,7 @@ namespace UI
             _rewardedVideoAction += GetComponent<IronSourceAds>().ShowRewardedAd;
             _player = GameObject.Find("Player");
             _gameMode = _player.GetComponent<GameMode>();
+            _playerController = _player.GetComponent<PlayerController>();
         }
 
         // Update is called once per frame
@@ -64,6 +68,11 @@ namespace UI
         {
             ShowGameScreen();
             _gameMode.Resurrect();
+        }
+
+        public void CallJump()
+        {
+            _playerController.Jump();
         }
         
         
