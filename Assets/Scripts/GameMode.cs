@@ -1,4 +1,5 @@
 using Player;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -43,6 +44,8 @@ public class GameMode : MonoBehaviour
     private Health _health;
     private Score _score;
     private Rigidbody _mainCameraRigidbody;
+    private GameObject _mainGameCanvas;
+    private MainGameplayUIController _UIScript;
     
     void Start()
     {
@@ -50,6 +53,9 @@ public class GameMode : MonoBehaviour
         _health = GetComponent<Health>();
         _score = GetComponent<Score>();
         _mainCameraRigidbody = GameObject.Find("Main_Camera").GetComponent<Rigidbody>();
+        _mainGameCanvas = GameObject.Find("Main_Game_Canvas");
+        _UIScript = _mainGameCanvas.GetComponent<MainGameplayUIController>();
+        
 
         currentWorldSpeed = worldSpeedBase;
         
@@ -69,6 +75,7 @@ public class GameMode : MonoBehaviour
         if (!_health.GetIsDead()) return;
         PauseGame();
         LetUserDecideOnDeath();
+        _UIScript.ShowDeathScreen();
     }
 
     private void LetUserDecideOnDeath()
@@ -89,7 +96,7 @@ public class GameMode : MonoBehaviour
         }
     }
 
-    private void Resurrect()
+    public void Resurrect()
     {
         UnpauseGame();
         
@@ -105,7 +112,7 @@ public class GameMode : MonoBehaviour
 
     }
 
-    private void EndGame()
+    public void EndGame()
     {
         if (!_scoreSaved)
         {
