@@ -132,6 +132,7 @@ namespace UI
         private void Resurrect()
         {
             ResetUIState();
+            _watchVideoButtonClicked = false;
             _gameMode.Resurrect();
             _gameMode.PauseGame();
             _resumeCountdownTextGO.transform.localScale = Vector3.one;
