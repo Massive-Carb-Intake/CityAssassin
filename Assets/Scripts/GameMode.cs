@@ -77,7 +77,10 @@ public class GameMode : MonoBehaviour
         if (!_health.GetIsDead()) return;
         PauseGame();
         LetUserDecideOnDeath();
-        _UIScript.ShowDeathScreen();
+        if (!_UIScript.DeathScreenShown())
+        {
+            _UIScript.ShowDeathScreen();
+        }
     }
 
     private void LetUserDecideOnDeath()
