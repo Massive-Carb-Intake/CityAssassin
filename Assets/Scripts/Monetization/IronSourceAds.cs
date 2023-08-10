@@ -7,13 +7,12 @@ using Debug = UnityEngine.Debug;
 public class IronSourceAds : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         IronSource.Agent.init("1aad0e0d5", IronSourceAdUnits.INTERSTITIAL);
         IronSource.Agent.init("1aad0e0d5", IronSourceAdUnits.REWARDED_VIDEO);
         IronSource.Agent.init("1aad0e0d5", IronSourceAdUnits.BANNER);
         IronSource.Agent.validateIntegration();
-        Debug.Log("Started");
     }
 
     private void OnEnable()
@@ -45,8 +44,6 @@ public class IronSourceAds : MonoBehaviour
         IronSourceBannerEvents.onAdScreenPresentedEvent += BannerOnAdScreenPresentedEvent;
         IronSourceBannerEvents.onAdScreenDismissedEvent += BannerOnAdScreenDismissedEvent;
         IronSourceBannerEvents.onAdLeftApplicationEvent += BannerOnAdLeftApplicationEvent;
-        
-        Debug.Log("Enabled");
     }
     
     private void SdkInitializationCompletedEvent(){}
@@ -71,7 +68,7 @@ public class IronSourceAds : MonoBehaviour
         }
         else
         {
-            Debug.Log("AD NOT READY");
+            Debug.Log("INTERSTITIAL AD NOT READY");
         }
     }
     

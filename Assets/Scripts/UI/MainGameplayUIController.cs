@@ -47,6 +47,11 @@ namespace UI
         private Timer _resumeTimer;
         
         private float _resumeTimerInitialValue;
+
+        private bool _gameHasBegun;
+
+        private GameObject _coolTextGO;
+        private TMP_Text _coolTextTMP;
         
         
         
@@ -73,7 +78,7 @@ namespace UI
             
             _deathPanel.localScale = Vector3.zero;
             
-            _rewardedVideoAction += GetComponent<IronSourceAds>().ShowRewardedAd;
+            _rewardedVideoAction += _ironSourceScript.ShowRewardedAd;
             
             _watchVideoTimerInitialValue = 5f;
             _watchVideoButtonClicked = false;
@@ -85,9 +90,18 @@ namespace UI
 
             _resumeTimer = new Timer();
             _resumeTimer.SetTimer(_resumeTimerInitialValue);
-            
 
-        }
+            _gameHasBegun = false;
+            
+            
+            // FOR DEBUGGING
+            _coolTextGO = GameObject.Find("Cool_Canvas").transform.Find("Cool_Text").gameObject;
+            _coolTextTMP = _coolTextGO.GetComponent<TMP_Text>();
+            //_coolText.text = "START START START";
+            
+            beginGame();
+
+        }//
         
 
         // Update is called once per frame
@@ -126,6 +140,8 @@ namespace UI
             _deathPanel.localScale = Vector3.one;
             _gameplayUI.localScale = Vector3.zero;
             IronSourceRewardedVideoEvents.onAdRewardedEvent += OnRewarded;
+            _coolTextTMP.text = "Show Death Screen";
+
             _watchVideoTimer.StartTimer();
         }
         
@@ -133,10 +149,11 @@ namespace UI
         {
             ResetUIState();
             _watchVideoButtonClicked = false;
+            _deathScreenShown = false;
             _gameMode.Resurrect();
             _gameMode.PauseGame();
             _resumeCountdownTextGO.transform.localScale = Vector3.one;
-            IronSourceRewardedVideoEvents.onAdClosedEvent -= OnRewardedAndClosed;
+            //IronSourceRewardedVideoEvents.onAdClosedEvent -= OnRewardedAndClosed;
             _resumeTimer.StartTimer();
             
         }
@@ -145,7 +162,7 @@ namespace UI
         {
             _deathScreenShown = false;
             IronSourceRewardedVideoEvents.onAdRewardedEvent -= OnRewarded;
-            IronSourceRewardedVideoEvents.onAdClosedEvent -= OnRewardedAndClosed;
+            //IronSourceRewardedVideoEvents.onAdClosedEvent -= OnRewardedAndClosed;
             _gameMode.EndGame();
         }
 
@@ -153,7 +170,9 @@ namespace UI
         private void OnRewarded(IronSourcePlacement placement, IronSourceAdInfo adInfo)
         {
             IronSourceRewardedVideoEvents.onAdRewardedEvent -= OnRewarded;
-            IronSourceRewardedVideoEvents.onAdClosedEvent += OnRewardedAndClosed;
+            Resurrect();
+            //IronSourceRewardedVideoEvents.onAdClosedEvent += OnRewardedAndClosed;
+            _coolTextTMP.text = "On Rewarded";
             
         }
 
@@ -161,6 +180,8 @@ namespace UI
         {
             _deathScreenShown = false;
             Resurrect();
+            _coolTextTMP.text = "On R&C";
+
         }
         
 
@@ -191,6 +212,13 @@ namespace UI
 
 
 
+        }
+
+        public void beginGame()
+        {
+            _gameHasBegun = true;
+            _coolTextTMP.text = "Begin Game";
+            //IronSourceRewardedVideoEvents.onAdRewardedEvent += OnRewarded;
         }
         
         

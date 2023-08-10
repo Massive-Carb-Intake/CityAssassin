@@ -61,6 +61,7 @@ public class GameMode : MonoBehaviour
 
         currentWorldSpeed = worldSpeedBase;
         
+        //_UIScript.beginGame();
         UnpauseGame(); // To start the level after a reload
     }
 
